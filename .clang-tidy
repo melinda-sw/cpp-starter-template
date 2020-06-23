@@ -1,0 +1,5 @@
+﻿---
+Checks: 'bugprone-*,cppcoreguidelines-*,clang-analyzer-*,misc-*,modernize-*,-modernize-use-trailing-return-type,performance-*,portability-*,readability-*'
+HeaderFilterRegex: '*'
+FormatStyle: 'file'
+
