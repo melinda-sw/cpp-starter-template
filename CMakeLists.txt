@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.4)
 
 set(TARGET_NAME cpp-starter-template)
+project(${TARGET_NAME} VERSION 0.1)
 
 # Export compile_commands.json during build for integration with other tools
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
