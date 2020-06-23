@@ -14,6 +14,27 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+include(cmake/conan.cmake)
+
+# Conan and dependencies configuration
+conan_add_remote(
+    NAME
+        catchorg
+    URL
+        https://api.bintray.com/conan/catchorg/Catch2
+)
+
+conan_cmake_run(
+    REQUIRES
+        Catch2/2.12.2@catchorg/stable
+    BASIC_SETUP
+        CMAKE_TARGETS
+    BUILD
+        missing
+)
+
+enable_testing()
+
 add_compile_options(-W -Wall -Wextra -pedantic)
 
 add_subdirectory(source)
