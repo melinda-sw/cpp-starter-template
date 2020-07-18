@@ -17,7 +17,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 include(cmake/conan.cmake)
 include(cmake/clang-format.cmake)
-include(cmake/clang-tidy.cmake)
+# include(cmake/clang-tidy.cmake)
 
 # Conan and dependencies configuration
 conan_add_remote(
