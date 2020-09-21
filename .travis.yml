@@ -21,6 +21,8 @@ matrix:
             # Clang tools
             - clang-format-10
             - clang-tidy-10
+            # Build tools
+            - cmake
       install:
           - pip3 install conan
       env:
@@ -46,6 +48,8 @@ matrix:
             # Clang tools
             - clang-format-10
             - clang-tidy-10
+            # Build tools
+            - cmake
       install:
           - pip3 install conan
       env:
@@ -53,7 +57,6 @@ matrix:
 
 before_install:
     - sudo apt-get update
-    - sudo apt install cmake
     - eval "${MATRIX_EVAL}"
 
 script: ./ci/travis.sh
