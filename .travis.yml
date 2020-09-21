@@ -10,6 +10,8 @@ matrix:
             - ubuntu-toolchain-r-test
             - sourceline: 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-10 main'
               key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
+            - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
+              key_url: 'https://apt.kitware.com/keys/kitware-archive-latest.asc'
           packages:
             - g++-10
             # Support for Conan dependency management
@@ -31,6 +33,8 @@ matrix:
             - ubuntu-toolchain-r-test
             - sourceline: 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-10 main'
               key_url: 'https://apt.llvm.org/llvm-snapshot.gpg.key'
+            - sourceline: 'deb https://apt.kitware.com/ubuntu/ bionic main'
+              key_url: 'https://apt.kitware.com/keys/kitware-archive-latest.asc'
           packages:
             - clang-10
             # Standard library
@@ -49,6 +53,7 @@ matrix:
 
 before_install:
     - sudo apt-get update
+    - sudo apt install cmake
     - eval "${MATRIX_EVAL}"
 
 script: ./ci/travis.sh
