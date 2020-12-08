@@ -15,10 +15,9 @@ jobs:
   build-gcc: # Build configuration with GCC compiler
     runs-on: ubuntu-18.04
     name: GCC build
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2 # Check out repository under $GITHUB_WORKSPACE
+      - uses: turtlebrowser/get-conan@v1.0 # Install conan
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
@@ -29,13 +28,13 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
   build-clang: # Build configuration with Clang compiler
     runs-on: ubuntu-18.04
     name: Clang build
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2 # Check out repository under $GITHUB_WORKSPACE
+      - uses: turtlebrowser/get-conan@v1.0 # Install conan
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
