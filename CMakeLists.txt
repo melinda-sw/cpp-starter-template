@@ -26,6 +26,12 @@ conan_add_remote(
     URL
         https://api.bintray.com/conan/catchorg/Catch2
 )
+conan_add_remote(
+    NAME
+        jkconan-vendor
+    URL
+        https://api.bintray.com/conan/jan-kelemen/conan-vendor
+)
 
 conan_cmake_run(
     REQUIRES
