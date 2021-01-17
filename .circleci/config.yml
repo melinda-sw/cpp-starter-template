@@ -24,6 +24,7 @@ jobs:
       CC: gcc-10
       CXX: g++-10
     steps:
+      - checkout
       - run: ./ci/circle.sh
   build_with_clang:
     docker:
@@ -35,5 +36,6 @@ jobs:
       CC: clang-11
       CXX: clang++-11
     steps:
+      - checkout
       - run: ./ci/circle.sh
 
