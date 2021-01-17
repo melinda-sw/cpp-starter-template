@@ -1,41 +1,61 @@
 version: 2.1
 
+executors:
+  exectr:
+    docker:
+      - image: 'jankelemen/cpp-starter-template-buildenv:latest'
+
 workflows:
   version: 2
   GCC:
     jobs:
-      - build_with_gcc:
-          context:
-            - docker-hub-creds
+      - build_with_gcc
+      - test:
+          requires:
+            - build_with_gcc
   Clang:
     jobs:
-      - build_with_clang:
-          context:
-            - docker-hub-creds
+      - build_with_clang
+      - test:
+          requires:
+            - build_with_clang
 
 jobs:
   build_with_gcc:
-    docker:
-      - image: 'jankelemen/cpp-starter-template-buildenv:latest'
-        auth:
-          username: jankelemen
-          password: $DOCKERHUB_PASSWORD
+    executor: exectr
     environment:
       CC: gcc-10
       CXX: g++-10
     steps:
       - checkout
-      - run: ./ci/circle.sh
+      - run:
+          name: Build sources
+          command: ./scripts/build.sh -c RelWithDebInfo
+      - persist_to_workspace:
+          root: .
+          paths: build
+
   build_with_clang:
-    docker:
-      - image: 'jankelemen/cpp-starter-template-buildenv:latest'
-        auth:
-          username: jankelemen
-          password: $DOCKERHUB_PASSWORD
+    executor: exectr
     environment:
       CC: clang-11
       CXX: clang++-11
     steps:
       - checkout
-      - run: ./ci/circle.sh
+      - run:
+          name: Build sources
+          command: ./scripts/build.sh -c RelWithDebInfo
+      - persist_to_workspace:
+          root: .
+          paths: build
 
+  test:
+    executor: exectr
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Execute Tests
+          command: ./scripts/test.sh
+      - store_test_results:
+          path: build
