@@ -15,7 +15,9 @@ RUN apt install -y --no-install-recommends \
     # For wget
     wget \
     # For gpg-agent
-    gpg-agent
+    gpg-agent \
+    # For make
+    build-essential
 
 # Add apt sources
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
@@ -27,6 +29,7 @@ RUN apt-get update -y
 # Install prerequisites
 RUN apt install -y --no-install-recommends \
     git \
+    ssh \
     # Prerequisites for conan
     python3 \
     python3-pip \

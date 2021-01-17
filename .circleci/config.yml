@@ -2,14 +2,14 @@ version: 2.1
 
 workflows:
   version: 2
-  build_with_gcc:
-    jobs:
-      - build_with_clang:
-          context:
-            - docker-hub-creds
-  build_with_clang:
+  GCC:
     jobs:
       - build_with_gcc:
+          context:
+            - docker-hub-creds
+  Clang:
+    jobs:
+      - build_with_clang:
           context:
             - docker-hub-creds
 
