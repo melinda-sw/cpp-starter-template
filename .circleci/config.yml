@@ -1,4 +1,11 @@
 version: 2.1
+
+workflows:
+  build:
+    jobs:
+      - build:
+          context:
+            - docker-hub-creds
 jobs:
   build:
     docker:
@@ -7,5 +14,5 @@ jobs:
           username: jankelemen
           password: $DOCKERHUB_PASSWORD
     steps:
-      - run: g++-10
+      - run: echo $DOCKERHUB_LOGIN
 
