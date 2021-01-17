@@ -15,7 +15,7 @@ workflows:
       - build_with_gcc:
           context:
             - docker-hub-creds
-              bintray-creds
+            - bintray-creds
       - test:
           context:
             - docker-hub-creds
@@ -26,7 +26,7 @@ workflows:
       - build_with_clang:
           context:
             - docker-hub-creds
-              bintray-creds
+            - bintray-creds
       - test:
           context:
             - docker-hub-creds
