@@ -5,7 +5,7 @@ executors:
     docker:
       - image: 'jankelemen/cpp-starter-template-buildenv:latest'
         auth:
-          username: jankelemen
+          username: $DOCKERHUB_LOGIN
           password: $DOCKERHUB_PASSWORD
 
 workflows:
