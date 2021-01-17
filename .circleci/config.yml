@@ -4,19 +4,30 @@ executors:
   exectr:
     docker:
       - image: 'jankelemen/cpp-starter-template-buildenv:latest'
+        auth:
+          username: jankelemen
+          password: $DOCKERHUB_PASSWORD
 
 workflows:
   version: 2
   GCC:
     jobs:
-      - build_with_gcc
+      - build_with_gcc:
+          context:
+            - docker-hub-creds
       - test:
+          context:
+            - docker-hub-creds
           requires:
             - build_with_gcc
   Clang:
     jobs:
-      - build_with_clang
+      - build_with_clang:
+          context:
+            - docker-hub-creds
       - test:
+          context:
+            - docker-hub-creds
           requires:
             - build_with_clang
 
@@ -33,7 +44,9 @@ jobs:
           command: ./scripts/build.sh -c RelWithDebInfo
       - persist_to_workspace:
           root: .
-          paths: build
+          paths:
+            - build
+            - scripts
 
   build_with_clang:
     executor: exectr
@@ -47,7 +60,9 @@ jobs:
           command: ./scripts/build.sh -c RelWithDebInfo
       - persist_to_workspace:
           root: .
-          paths: build
+          paths: 
+            - build
+            - scripts
 
   test:
     executor: exectr
