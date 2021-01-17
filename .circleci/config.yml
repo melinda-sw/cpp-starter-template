@@ -1,18 +1,39 @@
 version: 2.1
 
 workflows:
-  build:
+  version: 2
+  build_with_gcc:
     jobs:
-      - build:
+      - build_with_clang:
           context:
             - docker-hub-creds
+  build_with_clang:
+    jobs:
+      - build_with_gcc:
+          context:
+            - docker-hub-creds
+
 jobs:
-  build:
+  build_with_gcc:
     docker:
       - image: 'jankelemen/cpp-starter-template-buildenv:latest'
         auth:
           username: jankelemen
           password: $DOCKERHUB_PASSWORD
+    environment:
+      CC: gcc-10
+      CXX: g++-10
     steps:
-      - run: echo $DOCKERHUB_LOGIN
+      - run: ./ci/circle.sh
+  build_with_clang:
+    docker:
+      - image: 'jankelemen/cpp-starter-template-buildenv:latest'
+        auth:
+          username: jankelemen
+          password: $DOCKERHUB_PASSWORD
+    environment:
+      CC: clang-11
+      CXX: clang++-11
+    steps:
+      - run: ./ci/circle.sh
 
