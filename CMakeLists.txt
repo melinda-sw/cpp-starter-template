@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.4)
 set(TARGET_NAME cpp-starter-template)
 project(${TARGET_NAME} VERSION 0.1)
 
+# Build dependencies only
+option(SETUP_DEPENDENCIES_ONLY "Build dependencies and not the sources" OFF)
+
 # Export compile_commands.json during build for integration with other tools
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -19,32 +22,13 @@ include(cmake/conan.cmake)
 include(cmake/clang-format.cmake)
 # include(cmake/clang-tidy.cmake)
 
-# Conan and dependencies configuration
-conan_add_remote(
-    NAME
-        catchorg
-    URL
-        https://api.bintray.com/conan/catchorg/Catch2
-)
-conan_add_remote(
-    NAME
-        jkconan-vendor
-    URL
-        https://api.bintray.com/conan/jan-kelemen/conan-vendor
-)
-
-conan_cmake_run(
-    REQUIRES
-        Catch2/2.12.2@catchorg/stable
-    BASIC_SETUP
-        CMAKE_TARGETS
-    BUILD
-        missing
-)
+include(cmake/dependencies.cmake)
 
 enable_testing()
 
 add_compile_options(-W -Wall -Wextra -pedantic)
 
-add_subdirectory(source)
+if (NOT SETUP_DEPENDENCIES_ONLY)
+    add_subdirectory(source)
+endif()
 
