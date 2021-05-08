@@ -3,7 +3,7 @@ version: 2.1
 executors:
   exectr:
     docker:
-      - image: 'jankelemen/cpp-starter-template-buildenv:latest'
+      - image: 'jankelemen/cpp-starter-template-buildenv:0.2.0'
         auth:
           username: $DOCKERHUB_LOGIN
           password: $DOCKERHUB_PASSWORD
@@ -44,11 +44,6 @@ jobs:
       - run:
           name: Build sources
           command: ./scripts/build.sh -c RelWithDebInfo
-      - run:
-          name: Upload conan packages to Bintray
-          command: |
-            conan user -p $BINTRAY_APIKEY -r jkconan-vendor $BINTRAY_USERNAME
-            conan upload "*" --confirm --all --parallel -r jkconan-vendor
       - persist_to_workspace:
           root: .
           paths:
@@ -65,11 +60,6 @@ jobs:
       - run:
           name: Build sources
           command: ./scripts/build.sh -c RelWithDebInfo
-      - run:
-          name: Upload conan packages to Bintray
-          command: |
-            conan user -p $BINTRAY_APIKEY -r jkconan-vendor $BINTRAY_USERNAME
-            conan upload "*" --confirm --all --parallel -r jkconan-vendor
       - persist_to_workspace:
           root: .
           paths: 
