@@ -37,8 +37,8 @@ jobs:
   build_with_gcc:
     executor: exectr
     environment:
-      CC: gcc-10
-      CXX: g++-10
+      CC: gcc-11
+      CXX: g++-11
     steps:
       - checkout
       - run:
@@ -58,8 +58,8 @@ jobs:
   build_with_clang:
     executor: exectr
     environment:
-      CC: clang-11
-      CXX: clang++-11
+      CC: clang-12
+      CXX: clang++-12
     steps:
       - checkout
       - run:

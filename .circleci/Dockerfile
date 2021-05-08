@@ -22,7 +22,7 @@ RUN apt install -y --no-install-recommends \
 # Add apt sources
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add
-RUN add-apt-repository 'deb http://apt.llvm.org/focal/ llvm-toolchain-focal-11 main'
+RUN add-apt-repository 'deb http://apt.llvm.org/focal/ llvm-toolchain-focal-12 main'
 
 RUN apt-get update -y
 
@@ -37,13 +37,13 @@ RUN apt install -y --no-install-recommends \
 
 # Install compilers
 RUN apt install -y --no-install-recommends \
-    gcc-10 g++-10 \
-    clang-11
+    gcc-11 g++-11 \
+    clang-12
 
 # Install build tools
 RUN apt install -y --no-install-recommends \
     cmake \
-    clang-format-11 clang-tidy-11
+    clang-format-12 clang-tidy-12
 
 # Cleanup the packages to reduce the size of the image
 RUN apt autoclean && \ 
