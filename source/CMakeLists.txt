@@ -10,7 +10,7 @@ add_executable(${TARGET_NAME}_test
 target_link_libraries(
     ${TARGET_NAME}_test
     PRIVATE
-        CONAN_PKG::Catch2
+        CONAN_PKG::catch2
 )
 add_dependencies(${TARGET_NAME}_test clang-format)
 
