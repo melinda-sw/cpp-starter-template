@@ -18,17 +18,16 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-include(cmake/conan.cmake)
-include(cmake/clang-format.cmake)
-# include(cmake/clang-tidy.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/clang-format.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/clang-tidy.cmake)
 
-include(cmake/dependencies.cmake)
-
-enable_testing()
-
-add_compile_options(-W -Wall -Wextra -pedantic)
+include(${PROJECT_SOURCE_DIR}/cmake/dependencies.cmake)
 
 if (NOT SETUP_DEPENDENCIES_ONLY)
+    enable_testing()
+
+    add_compile_options(-W -Wall -Wextra -pedantic)
+
     add_subdirectory(source)
 endif()
 
