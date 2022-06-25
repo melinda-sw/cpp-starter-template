@@ -1,12 +1,18 @@
 include(${PROJECT_SOURCE_DIR}/cmake/conan.cmake)
 
 # Conan and dependencies configuration
-conan_cmake_run(
+
+conan_cmake_configure(
     REQUIRES
-        catch2/2.13.6
-    BASIC_SETUP
-        CMAKE_TARGETS
-    BUILD
-        missing
+        catch2/2.13.8
+    GENERATORS
+        cmake_find_package
 )
 
+conan_cmake_autodetect(settings)
+
+conan_cmake_install(PATH_OR_REFERENCE .
+                    BUILD missing
+                    SETTINGS ${settings})
+
+find_package(Catch2 REQUIRED)
