@@ -1,17 +1,11 @@
-# http://mariobadr.com/using-clang-tidy-with-cmake-36.html
-
-find_program(
-    CLANG_TIDY_EXE
-    NAMES 
-        "clang-tidy-13"
-    DOC 
-        "Path to clang-tidy executable"
-)
-
-if(NOT CLANG_TIDY_EXE)
-    message(STATUS "clang-tidy not found.")
-else()
+if (CST_ENABLE_CLANG_TIDY)
+    find_program(CLANG_TIDY_EXE NAMES clang-tidy-17 REQUIRED)
     message(STATUS "clang-tidy found: ${CLANG_TIDY_EXE}")
-    set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE}")
+    
+    set(CMAKE_CXX_CLANG_TIDY
+        ${CLANG_TIDY_EXE};
+        -format-style='file';
+        -header-filter=${PROJECT_SOURCE_DIR}/src;
+    )
 endif()
 
