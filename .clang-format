@@ -9,7 +9,6 @@ AlignEscapedNewlines: DontAlign
 AlignOperands: 'false'
 AlignTrailingComments: 'false'
 AllowAllArgumentsOnNextLine: 'false'
-AllowAllConstructorInitializersOnNextLine: 'false'
 AllowAllParametersOfDeclarationOnNextLine: 'false'
 AllowShortBlocksOnASingleLine: 'false'
 AllowShortCaseLabelsOnASingleLine: 'false'
@@ -32,7 +31,6 @@ BreakInheritanceList: BeforeComma
 BreakStringLiterals: 'false'
 ColumnLimit: '80'
 CompactNamespaces: 'false'
-ConstructorInitializerAllOnOneLineOrOnePerLine: 'true'
 ConstructorInitializerIndentWidth: '4'
 ContinuationIndentWidth: '4'
 Cpp11BracedListStyle: 'true'
@@ -49,15 +47,22 @@ IndentPPDirectives: None
 IndentRequires: 'false'
 IndentWidth: '4'
 IndentWrappedFunctionNames: 'false'
+InsertBraces: 'false'
+KeepEmptyLinesAtEOF: 'false'
 KeepEmptyLinesAtTheStartOfBlocks: 'false'
 Language: Cpp
 LambdaBodyIndentation: Signature
 MaxEmptyLinesToKeep: '1'
 NamespaceIndentation: All
+PackConstructorInitializers: CurrentLine
 PenaltyBreakBeforeFirstCallParameter: '0'
 PPIndentWidth: '-1'
 PointerAlignment: Left
+QualifierAlignment: Right
 ReflowComments: 'true'
+RemoveParentheses: 'ReturnStatement'
+RemoveSemicolon: 'true'
+SeparateDefinitionBlocks: Always
 ShortNamespaceLines: '0'
 SortIncludes: 'true'
 SortUsingDeclarations: 'false'
@@ -66,6 +71,7 @@ SpaceAfterLogicalNot: 'false'
 SpaceAfterTemplateKeyword: 'false'
 SpaceBeforeAssignmentOperators: 'true'
 SpaceBeforeCaseColon: 'false'
+SpaceBeforeCpp11BracedList: 'false'
 SpaceBeforeParens: ControlStatements
 SpaceInEmptyParentheses: 'false'
 SpacesBeforeTrailingComments: '1'
@@ -75,9 +81,9 @@ SpacesInContainerLiterals: 'false'
 SpacesInLineCommentPrefix:
   Minimum: '1'
   Maximum: '-1'
-SpacesInParentheses: 'false'
+SpacesInParens: Never
 SpacesInSquareBrackets: 'false'
-Standard: c++17
+Standard: c++20
 TabWidth: '4'
 UseTab: Never
 ...

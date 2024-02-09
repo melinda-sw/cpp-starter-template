@@ -1,33 +1,29 @@
-cmake_minimum_required(VERSION 3.4)
+cmake_minimum_required(VERSION 3.27)
 
-set(TARGET_NAME cpp-starter-template)
-project(${TARGET_NAME} VERSION 0.1)
+project(cst VERSION 0.1 LANGUAGES CXX)
 
-# Build dependencies only
-option(SETUP_DEPENDENCIES_ONLY "Build dependencies and not the sources" OFF)
-
-# Export compile_commands.json during build for integration with other tools
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+option(CST_ENABLE_CLANG_FORMAT "Enable clang-format in build" OFF)
+option(CST_ENABLE_CLANG_TIDY "Enable clang-tidy in build" OFF)
+option(CST_ENABLE_COMPILER_STATIC_ANALYSIS "Enable static analysis provided by compiler in build" OFF)
+option(CST_ENABLE_CPPCHECK "Enable cppcheck in build" OFF)
+option(CST_ENABLE_IWYU "Enable include-what-you-use in build" OFF)
 
-set(CMAKE_MODULE_PATH ${CMAKE_BINARY_DIR} ${CMAKE_MODULE_PATH})
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+find_package(fmt REQUIRED)
 
-include(${PROJECT_SOURCE_DIR}/cmake/clang-format.cmake)
-include(${PROJECT_SOURCE_DIR}/cmake/clang-tidy.cmake)
+if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+    include(CTest)
+    if (BUILD_TESTING)
+        find_package(Catch2)
+        set(CST_BUILD_TESTS ON)
+    endif()
 
-include(${PROJECT_SOURCE_DIR}/cmake/dependencies.cmake)
+    include(${PROJECT_SOURCE_DIR}/cmake/clang-tidy.cmake)
+    include(${PROJECT_SOURCE_DIR}/cmake/cppcheck.cmake)
+    include(${PROJECT_SOURCE_DIR}/cmake/iwyu.cmake)
 
-if (NOT SETUP_DEPENDENCIES_ONLY)
-    enable_testing()
-
-    add_compile_options(-W -Wall -Wextra -pedantic)
-
-    add_subdirectory(source)
+    include(${PROJECT_SOURCE_DIR}/cmake/project-options.cmake)
 endif()
 
+add_subdirectory(src)
