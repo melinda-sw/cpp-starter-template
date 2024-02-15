@@ -9,6 +9,7 @@ Checks: '
   -cppcoreguidelines-non-private-member-variables-in-classes,
   misc-*,
   -misc-non-private-member-variables-in-classes,
+  -misc-include-cleaner,
   modernize-*,
   -modernize-use-trailing-return-type,
   performance-*,
@@ -19,3 +20,6 @@ Checks: '
 '
 FormatStyle: 'file'
 
+CheckOptions:
+  - key: readability-identifier-length.IgnoredVariableNames
+    value: 'rv'

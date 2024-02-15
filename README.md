@@ -35,7 +35,7 @@ cmake --build --preset=conan-release
 ## Testing
 Building of tests is enabled by default. Execute the tests with the following command:
 ```
-ctest --preset conan-release || ctest --preset conan-release --rerun-failed --output-on-failure`
+ctest --preset conan-release || ctest --preset conan-release --rerun-failed --output-on-failure
 ```
 
 Disable building of tests by:
