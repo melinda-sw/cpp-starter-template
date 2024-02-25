@@ -7,7 +7,7 @@ TEST_CASE("vectors can be sized and resized", "[vector]")
     // This setup will be done 4 times in total, once for each section
     std::vector<int> vec(5);
 
-    REQUIRE(vec.size() == 5);// cppcheck-suppress knownConditionTrueFalse
+    REQUIRE(vec.size() == 5); // cppcheck-suppress knownConditionTrueFalse
     REQUIRE(vec.capacity() >= 5);
 
     SECTION("resizing bigger changes size and capacity")
@@ -21,7 +21,7 @@ TEST_CASE("vectors can be sized and resized", "[vector]")
     {
         vec.resize(0);
 
-        //NOLINTNEXTLINE
+        // NOLINTNEXTLINE
         REQUIRE(vec.size() == 0); // cppcheck-suppress knownConditionTrueFalse
         REQUIRE(vec.capacity() >= 5);
     }

@@ -32,3 +32,4 @@ class CSTConan(ConanFile):
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
+
