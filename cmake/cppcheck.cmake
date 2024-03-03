@@ -3,9 +3,9 @@ if (CST_ENABLE_CPPCHECK)
     message(STATUS "cppcheck found: ${CPPCHECK_EXE}")
 
     if(MSVC)
-      set(CPPCHECK_TEMPLATE "vs")
+        set(CPPCHECK_TEMPLATE "vs")
     else()
-      set(CPPCHECK_TEMPLATE "gcc")
+        set(CPPCHECK_TEMPLATE "gcc")
     endif()
 
     set(CMAKE_CXX_CPPCHECK
@@ -27,7 +27,7 @@ if (CST_ENABLE_CPPCHECK)
         --inconclusive)
 
     if(NOT "${CMAKE_CXX_STANDARD}" STREQUAL "")
-      set(CMAKE_CXX_CPPCHECK ${CMAKE_CXX_CPPCHECK} --std=c++${CMAKE_CXX_STANDARD})
+        set(CMAKE_CXX_CPPCHECK ${CMAKE_CXX_CPPCHECK} --std=c++${CMAKE_CXX_STANDARD})
     endif()
 endif()
 
