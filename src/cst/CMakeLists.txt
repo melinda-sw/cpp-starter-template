@@ -25,6 +25,8 @@ if (CST_BUILD_TESTS)
             project-options
     )
 
-    include(Catch)
-    catch_discover_tests(cst_test)
+    if (NOT CMAKE_CROSSCOMPILING)
+        include(Catch)
+        catch_discover_tests(cst_test)
+    endif()
 endif()
