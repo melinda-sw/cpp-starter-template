@@ -12,11 +12,18 @@ Necessary build tools are:
   * GCC-13
   * Visual Studio 2022 (MSVC v193)
 
+### Cross compilation
+Supported architecture for cross compilation is Linux AArch64 with one of following compilers:
+* GCC-12
+* Clang-17
+
+Note that the compilation flags assume ARM Cortex-A76. Which can be changed in corresponding Conan profiles.
+
 ### Install dependencies
 ```
 conan install . --profile=conan/clang-17 --build=missing --settings build_type=Release
 ```
-* Conan profiles for supported compilers: `gcc-13`, `clang-17` and `msvc-2022`
+* Conan profiles for supported compilers: `gcc-13`, `clang-17`, `msvc-2022`, `aarch64-gcc-12`, `aarch64-clang-17`
 * Conan build types: `Release`, `Debug`
 
 ### Configure, build and test
@@ -52,7 +59,7 @@ with `Release` build type. This option is disabled by default.
 ```
 conan install . --profile=conan/clang-17 --profile=conan/opt/linux-hardening --build=* --settings build_type=Release
 ```
-* Conan profiles for toolchain hardening are: `linux-hardening` and `msvc-hardening`
+* Conan profiles for toolchain hardening are: `linux-hardening` and `msvc-hardening` for x86\_64 architectures and `aarch64-linux-hardening` for AArch64 architecture
 
 ### Sanitizers
 Enable sanitizers by adding an additional profile to the `conan install` command,
