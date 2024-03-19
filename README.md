@@ -59,7 +59,7 @@ with `Release` build type. This option is disabled by default.
 ```
 conan install . --profile=conan/clang-17 --profile=conan/opt/linux-hardening --build=* --settings build_type=Release
 ```
-* Conan profiles for toolchain hardening are: `linux-hardening` and `msvc-hardening`
+* Conan profiles for toolchain hardening are: `linux-hardening` and `msvc-hardening` for x86\_64 architectures and `aarch64-linux-hardening` for AArch64 architecture
 
 ### Sanitizers
 Enable sanitizers by adding an additional profile to the `conan install` command,
