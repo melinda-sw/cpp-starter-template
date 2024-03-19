@@ -9,6 +9,7 @@ Necessary build tools are:
   * See [installation instructions](https://docs.conan.io/2/installation.html)
 * One of supported compilers:
   * Clang-17
+  * GCC-12 for AArch64
   * GCC-13
   * Visual Studio 2022 (MSVC v193)
 
@@ -16,7 +17,7 @@ Necessary build tools are:
 ```
 conan install . --profile=conan/clang-17 --build=missing --settings build_type=Release
 ```
-* Conan profiles for supported compilers: `gcc-13`, `clang-17` and `msvc-2022`
+* Conan profiles for supported compilers: `gcc-13`, `clang-17`, `msvc-2022`, `aarch64-gcc-12`
 * Conan build types: `Release`, `Debug`
 
 ### Configure, build and test
