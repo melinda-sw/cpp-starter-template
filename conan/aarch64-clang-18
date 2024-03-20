@@ -4,11 +4,11 @@ arch=armv8
 compiler=clang
 compiler.cppstd=23
 compiler.libcxx=libstdc++11
-compiler.version=17
+compiler.version=18
 
 [buildenv]
-CC=clang-17
-CXX=clang++-17
+CC=clang-18
+CXX=clang++-18
 
 [conf]
 tools.build:cflags+=["--target=aarch64-linux-gnu", "-mcpu=cortex-a76", "-march=armv8-a"]

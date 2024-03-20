@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
     
     env:
-      CLANG_VER: 17
+      CLANG_VER: 18
       
     strategy:
       fail-fast: false
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-22.04
     
     env:
-      CLANG_VER: 17
+      CLANG_VER: 18
       
     strategy:
       fail-fast: false
