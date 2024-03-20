@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
     
     env:
-      CLANG_VER: 17
+      CLANG_VER: 18
       
     strategy:
       fail-fast: false
@@ -31,7 +31,7 @@ jobs:
       - name: Install Conan
         uses: turtlebrowser/get-conan@v1.2
         with:
-          version: 2.0.17
+          version: 2.2.1
 
       - name: Fetch dependencies
         run: |
@@ -72,7 +72,7 @@ jobs:
       - name: Install Conan
         uses: turtlebrowser/get-conan@v1.2
         with:
-          version: 2.0.17
+          version: 2.2.1
 
       - name: Fetch dependencies
         run: |
@@ -111,7 +111,7 @@ jobs:
       - name: Install Conan
         uses: turtlebrowser/get-conan@v1.2
         with:
-          version: 2.0.17
+          version: 2.2.1
 
       - name: Fetch dependencies
         run: |

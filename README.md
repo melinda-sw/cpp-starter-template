@@ -5,25 +5,25 @@ Template set up with basic infrastructure for C++ projects.
 ## Building
 Necessary build tools are:
 * CMake 3.27 or higher
-* Conan 2.0 or higher
+* Conan 2.2 or higher
   * See [installation instructions](https://docs.conan.io/2/installation.html)
 * One of supported compilers:
-  * Clang-17
+  * Clang-18
   * GCC-13
   * Visual Studio 2022 (MSVC v193)
 
 ### Cross compilation
 Supported architecture for cross compilation is Linux AArch64 with one of following compilers:
 * GCC-12
-* Clang-17
+* Clang-18
 
 Note that the compilation flags assume ARM Cortex-A76. Which can be changed in corresponding Conan profiles.
 
 ### Install dependencies
 ```
-conan install . --profile=conan/clang-17 --build=missing --settings build_type=Release
+conan install . --profile=conan/clang-18 --build=missing --settings build_type=Release
 ```
-* Conan profiles for supported compilers: `gcc-13`, `clang-17`, `msvc-2022`, `aarch64-gcc-12`, `aarch64-clang-17`
+* Conan profiles for supported compilers: `gcc-13`, `clang-18`, `msvc-2022`, `aarch64-gcc-12`, `aarch64-clang-18`
 * Conan build types: `Release`, `Debug`
 
 ### Configure, build and test
@@ -57,7 +57,7 @@ profile to the `conan install` command, together with `--build=*` to recompile
 dependencies with hardening enabled. The hardening options should only be used
 with `Release` build type. This option is disabled by default.
 ```
-conan install . --profile=conan/clang-17 --profile=conan/opt/linux-hardening --build=* --settings build_type=Release
+conan install . --profile=conan/clang-18 --profile=conan/opt/linux-hardening --build=* --settings build_type=Release
 ```
 * Conan profiles for toolchain hardening are: `linux-hardening` and `msvc-hardening` for x86\_64 architectures and `aarch64-linux-hardening` for AArch64 architecture
 
@@ -66,7 +66,7 @@ Enable sanitizers by adding an additional profile to the `conan install` command
 together with `--build=*` to recompile dependencies with santizers enabled. Sanitizers
 should only be used with `Release` build type. These options are disabled by default.
 ```
-conan install . --profile=conan/clang-17 --profile=conan/opt/linux-address-sanitizer --build=* --settings build_type=Release
+conan install . --profile=conan/clang-18 --profile=conan/opt/linux-address-sanitizer --build=* --settings build_type=Release
 ```
 * Conan profiles for `Clang` and `GCC` sanitizers are: `linux-address-sanitizer`, `linux-leak-sanitizer`, `linux-thread-sanitizer`, `linux-undefined-sanitizer`
   * Thread sanitizer cannot be used in combination with any other sanitizer
