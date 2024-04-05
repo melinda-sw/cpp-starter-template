@@ -54,12 +54,21 @@ disabled by default.
 ### Toolchain hardening
 Enable toolchain security hardening compiler options, by adding an additional
 profile to the `conan install` command, together with `--build=*` to recompile
-dependencies with hardening enabled. The hardening options should only be used
+dependencies with hardening enabled. Also enable CMAKE\_POSITION\_INDEPENDENT\_CODE
+variable during CMake configure. The harddning options should only be used
 with `Release` build type. This option is disabled by default.
 ```
 conan install . --profile=conan/clang-18 --profile=conan/opt/linux-hardening --build=* --settings build_type=Release
+cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON --preset release
 ```
-* Conan profiles for toolchain hardening are: `linux-hardening` and `msvc-hardening` for x86\_64 architectures and `aarch64-linux-hardening` for AArch64 architecture
+For x86\_64 architecture toolchain hardening Conan profiles are:
+* `gcc-linux-hardening`
+* `clang-linux-hardening`
+* `msvc-hardening`
+
+For AArch64 architecture toolchain hardening Conan profiles are:
+* `gcc-aarch64-linux-hardening`
+* `clang-aarch64-linux-hardening`
 
 ### Sanitizers
 Enable sanitizers by adding an additional profile to the `conan install` command,

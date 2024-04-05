@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.27)
 
+cmake_policy(SET CMP0083 NEW)
+
 project(cst VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -11,6 +13,16 @@ option(CST_ENABLE_CPPCHECK "Enable cppcheck in build" OFF)
 option(CST_ENABLE_IWYU "Enable include-what-you-use in build" OFF)
 
 find_package(fmt REQUIRED)
+
+if (CMAKE_POSITION_INDEPENDENT_CODE)
+    include(CheckPIESupported)
+    check_pie_supported(OUTPUT_VARIABLE pie_supported LANGUAGES CXX)
+    if(NOT CMAKE_CXX_LINK_PIE_SUPPORTED)
+        message(WARNING "PIE is not supported at link time: ${pie_supported}.\n PIE link options will not be passed to linker.")
+    else()
+        message(STATUS "PIE flags enabled for executable targets.")
+    endif()
+endif()
 
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     include(CTest)
