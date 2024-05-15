@@ -41,13 +41,13 @@ jobs:
           version: ${{ env.CLANG_VER }}
 
        - name: Setup Conan
-        id: setup-conan
-        uses: ./.github/actions/setup-conan
-        with:
-          compiler: ${{ matrix.compiler }}
-          arch: 'aarch64'
-          compiler-version: ${{ matrix.compiler == 'gcc' && env.GCC_VER || env.CLANG_VER }}
-          build-type: Release             
+         id: setup-conan
+         uses: ./.github/actions/setup-conan
+         with:
+           compiler: ${{ matrix.compiler }}
+           arch: 'aarch64'
+           compiler-version: ${{ matrix.compiler == 'gcc' && env.GCC_VER || env.CLANG_VER }}
+           build-type: Release             
 
       - name: Fetch dependencies
         run: |

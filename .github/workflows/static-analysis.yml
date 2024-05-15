@@ -200,7 +200,7 @@ jobs:
 
       - name: Fetch dependencies
         run: |
-          conan install . --profile=${{ steps.setup-conan.outputs.conan-profile }} --profile=conan/dependencies --build=missing --settings build_type=Debug
+          conan install . --profile=${{ steps.setup-conan.outputs.conan-profile }} --build=missing --settings build_type=Debug
 
       - name: Configure CMake
         run: |
