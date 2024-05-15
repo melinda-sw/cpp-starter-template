@@ -27,6 +27,7 @@
   { include: [ "<bits/memory_resource.h>", private, "<memory_resource>", public ] },
   { include: [ "<bits/refwrap.h>", private, "<functional>", public ] },
   { include: [ "<bits/shared_ptr.h>", private, "<memory>", public ] },
+  { include: [ "<bits/std_abs.h>", private, "<math.h>", public ] },
   { include: [ "<bits/std_function.h>", private, "<functional>", public ] },
   { include: [ "<bits/stdint-intn.h>", private, "<stdint.h>", public ] },
   { include: [ "<bits/stdint-uintn.h>", private, "<stdint.h>", public ] },

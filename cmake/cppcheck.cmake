@@ -21,6 +21,7 @@ if (CST_ENABLE_CPPCHECK)
         # noisy and incorrect sometimes
         --suppress=passedByValue
         --suppress=knownConditionTrueFalse
+        --suppress=functionStatic
         # ignores code that cppcheck thinks is invalid C++
         --suppress=syntaxError
         --suppress=preprocessorErrorDirective
