@@ -1,0 +1,63 @@
+name: 'Setup Conan'
+inputs:
+  compiler:
+    description: 'Used compiler'
+    required: true
+  compiler-version:
+    description: 'Used compiler version'
+    required: true
+  arch:
+    description: 'Target architecture'
+    required: false
+    default: 'x64'
+  build-type:
+    description: 'Used build type'
+    required: true
+  shell:
+    description: 'Used shell for executing commands'
+    required: false
+    default: ${{ runner.os == 'Linux' && 'bash' || 'pwsh' }}
+  version:
+    description: 'Version to install'
+    required: false
+    default: 2.2.1
+outputs:
+  conan-profile:
+    value: conan/${{inputs.arch == 'aarch64' && 'aarch64-' || ''}}${{ inputs.compiler }}-${{ inputs.compiler-version }}
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Conan
+      uses: turtlebrowser/get-conan@v1.2
+      with:
+        version: ${{ inputs.version }}
+
+    - name: Install Conan configuration files
+      shell: ${{ inputs.shell }}
+      run: |
+        conan config install conan/global.conf
+
+    - name: Get Conan cache location
+      if: ${{ runner.os == 'Linux' }}
+      shell: ${{ inputs.shell }}
+      run: |
+          echo "CONAN_CACHE_LOCATION=$(conan config home)" >> $GITHUB_ENV
+
+    - name: Get Conan cache location
+      if: ${{ runner.os == 'Windows' }}
+      shell: ${{ inputs.shell }}
+      run: |
+        echo "CONAN_CACHE_LOCATION=$(conan config home)" >> $env:GITHUB_ENV
+
+    - name: Cache Conan packages
+      id: cache-conan-packages
+      uses: actions/cache@v4
+      with:
+        path: ${{ env.CONAN_CACHE_LOCATION }}/p
+        key: ${{ github.job }}-${{ inputs.compiler }}-${{ inputs.compiler-version }}-${{ hashFiles('conanfile.py') }}
+        
+    - name: Detect default profile
+      shell: ${{ inputs.shell }}
+      run: |
+        conan profile detect --force
+
