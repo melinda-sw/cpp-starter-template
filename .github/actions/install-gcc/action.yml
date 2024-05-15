@@ -11,6 +11,11 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Add ubuntu-toolchain-r/test repository
+      shell: bash
+      run: |
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+        sudo apt-get update -y
     - name: Install GCC x64
       if: ${{ inputs.arch == 'x64' }}
       shell: bash
