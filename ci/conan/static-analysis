@@ -1,0 +1,5 @@
+include(../../conan/{{ os.getenv("COMPILER_NAME")}}-{{ os.getenv("COMPILER_VER") }})
+
+[settings]
+build_type=Debug
+
