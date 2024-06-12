@@ -39,11 +39,7 @@ jobs:
         with:
           compiler: clang
           compiler-version: ${{ env.CLANG_VER }}
-          build-type: Debug
-
-      - name: Fetch dependencies
-        run: |
-          conan install . --profile=${{ steps.setup-conan.outputs.conan-profile }} --build=missing --settings build_type=Debug
+          profile: static-analysis
 
       - name: Configure CMake
         run: |
@@ -84,11 +80,7 @@ jobs:
         with:
           compiler: clang
           compiler-version: ${{ env.CLANG_VER }}
-          build-type: Debug
-
-      - name: Fetch dependencies
-        run: |
-          conan install . --profile=${{ steps.setup-conan.outputs.conan-profile }} --build=missing --settings build_type=Debug
+          profile: static-analysis
 
       - name: Configure CMake
         run: |
@@ -120,11 +112,7 @@ jobs:
         with:
           compiler: gcc
           compiler-version: ${{ env.GCC_VER }}
-          build-type: Debug             
-
-      - name: Fetch dependencies
-        run: |
-          conan install . --profile=${{ steps.setup-conan.outputs.conan-profile }} --build=missing --settings build_type=Debug
+          profile: static-analysis             
 
       - name: Configure CMake
         run: |
@@ -159,11 +147,7 @@ jobs:
         with:
           compiler: gcc
           compiler-version: ${{ env.GCC_VER }}
-          build-type: Debug             
-
-      - name: Fetch dependencies
-        run: |
-          conan install . --profile=${{ steps.setup-conan.outputs.conan-profile }} --build=missing --settings build_type=Debug
+          profile: static-analysis             
 
       - name: Configure CMake
         run: |
@@ -196,11 +180,7 @@ jobs:
         with:
           compiler: msvc
           compiler-version: 2022
-          build-type: Debug
-
-      - name: Fetch dependencies
-        run: |
-          conan install . --profile=${{ steps.setup-conan.outputs.conan-profile }} --build=missing --settings build_type=Debug
+          profile: msvc-analyze
 
       - name: Configure CMake
         run: |
