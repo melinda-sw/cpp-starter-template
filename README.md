@@ -1,6 +1,6 @@
-# cpp-starter-template [![GitHub Build status](https://github.com/melinda-sw/cpp-starter-template/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/melinda-sw/cpp-starter-template/actions/workflows/ci.yml/badge.svg?branch=master)
+# cpp-starter-template [![GitHub Build status](https://github.com/melinda-sw/cpp-starter-template/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/melinda-sw/cpp-starter-template/actions/workflows/ci.yml)
 
-Template set up with basic infrastructure for C++ projects.
+Template set up with basic infrastructure for C++ projects
 
 ## Building
 Necessary build tools are:
