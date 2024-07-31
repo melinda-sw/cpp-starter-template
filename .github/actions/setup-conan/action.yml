@@ -22,13 +22,8 @@ runs:
   using: 'composite'
   steps:
     - name: Install Conan
-      if: ${{ runner.os == 'Linux' }}
       shell: ${{ inputs.shell }}
       run: pipx install conan
-    - name: Install Conan
-      if: ${{ runner.os == 'Windows' }}
-      shell: ${{ inputs.shell }}
-      run: pip3 install conan
     - name: Echo installed version
       shell: ${{ inputs.shell }}
       run: |
