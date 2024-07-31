@@ -1,9 +1,10 @@
 name: 'Install Clang'
+description: 'Install Clang compilers and optional LLVM tools and dev packages'
 inputs:
   version:
     description: 'Version to install'
     required: false
-    default: 18
+    default: '18'
   clang-tidy:
     description: 'Install clang-tidy'
     required: false

@@ -55,9 +55,6 @@ jobs:
     
     env:
       GCC_VER: 14
-      
-    strategy:
-      fail-fast: false
         
     steps:
       - name: Checkout repository from github
@@ -88,9 +85,6 @@ jobs:
 
   msvc-asan:
     runs-on: windows-2022
-
-    strategy:
-      fail-fast: false
 
     steps:
       - name: Initialize

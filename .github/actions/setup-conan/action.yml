@@ -1,4 +1,5 @@
 name: 'Setup Conan'
+description: 'Install Conan package manager'
 inputs:
   compiler:
     description: 'Used compiler'
