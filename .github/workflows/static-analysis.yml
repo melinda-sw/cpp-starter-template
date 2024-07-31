@@ -11,10 +11,10 @@ concurrency:
 
 jobs:
   clang-tidy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     
     env:
-      GCC_VER: 13
+      GCC_VER: 14
       CLANG_VER: 18
       
     strategy:
@@ -50,10 +50,10 @@ jobs:
           cmake --build --preset=debug
 
   iwyu:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     
     env:
-      GCC_VER: 13
+      GCC_VER: 14
       CLANG_VER: 18
       
     strategy:
@@ -91,10 +91,10 @@ jobs:
           cmake --build --preset=debug
 
   gcc-analyzer:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     
     env:
-      GCC_VER: 13
+      GCC_VER: 14
       
     strategy:
       fail-fast: false
@@ -123,10 +123,10 @@ jobs:
           cmake --build --preset=debug
 
   cppcheck:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     
     env:
-      GCC_VER: 13
+      GCC_VER: 14
       
     strategy:
       fail-fast: false

@@ -9,12 +9,12 @@ Necessary build tools are:
   * See [installation instructions](https://docs.conan.io/2/installation.html)
 * One of supported compilers:
   * Clang-18
-  * GCC-13
+  * GCC-14
   * Visual Studio 2022 (MSVC v194)
 
 ### Cross compilation
 Supported architecture for cross compilation is Linux AArch64 with one of following compilers:
-* GCC-12
+* GCC-14
 * Clang-18
 
 Note that the compilation flags assume ARM Cortex-A76. Which can be changed in corresponding Conan profiles.
@@ -23,7 +23,7 @@ Note that the compilation flags assume ARM Cortex-A76. Which can be changed in c
 ```
 conan install . --profile=conan/clang-18 --build=missing --settings build_type=Release
 ```
-* Conan profiles for supported compilers: `gcc-13`, `clang-18`, `msvc-2022`, `aarch64-gcc-12`, `aarch64-clang-18`
+* Conan profiles for supported compilers: `gcc-14`, `clang-18`, `msvc-2022`, `aarch64-gcc-14`, `aarch64-clang-18`
 * Conan build types: `Release`, `Debug`
 
 ### Configure, build and test
