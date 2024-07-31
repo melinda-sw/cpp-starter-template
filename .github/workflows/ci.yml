@@ -62,9 +62,6 @@ jobs:
   windows:
     runs-on: windows-2022
 
-    strategy:
-      fail-fast: false
-
     steps:
       - name: Initialize
         run: |

@@ -55,7 +55,7 @@ disabled by default.
 Enable toolchain security hardening compiler options, by adding an additional
 profile to the `conan install` command, together with `--build=*` to recompile
 dependencies with hardening enabled. Also enable CMAKE\_POSITION\_INDEPENDENT\_CODE
-variable during CMake configure. The harddning options should only be used
+variable during CMake configure. The hardening options should only be used
 with `Release` build type. This option is disabled by default.
 ```
 conan install . --profile=conan/clang-18 --profile=conan/opt/linux-hardening --build=* --settings build_type=Release

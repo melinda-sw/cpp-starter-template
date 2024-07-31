@@ -16,10 +16,7 @@ jobs:
     env:
       GCC_VER: 14
       CLANG_VER: 18
-      
-    strategy:
-      fail-fast: false
-        
+
     steps:
       - name: Checkout repository from github
         uses: actions/checkout@v4
