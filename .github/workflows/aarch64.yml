@@ -39,6 +39,7 @@ jobs:
         uses: ./.github/actions/install-clang 
         with:
           version: ${{ env.CLANG_VER }}
+          arch: 'aarch64'
 
       - name: Setup Conan
         id: setup-conan
