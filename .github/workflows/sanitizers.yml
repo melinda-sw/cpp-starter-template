@@ -31,7 +31,7 @@ jobs:
         id: setup-conan
         uses: ./.github/actions/setup-conan
         with:
-          profile: clang-amd64-linux-asan-leak-undefined
+          profile: clang-libstdcxx-amd64-linux-asan-leak-undefined
 
       - name: Configure CMake
         run: |

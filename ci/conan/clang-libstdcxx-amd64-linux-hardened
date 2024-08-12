@@ -1,4 +1,4 @@
-include(../../conan/clang-{{ os.getenv("CLANG_VER") }}-amd64-linux)
+include(../../conan/clang-{{ os.getenv("CLANG_VER") }}-libstdcxx-amd64-linux)
 include(../../conan/opt/clang-amd64-linux-hardening)
 
 [settings]
