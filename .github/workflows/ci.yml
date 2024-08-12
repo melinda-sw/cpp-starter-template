@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        profile: [gcc-amd64-linux-hardened, clang-libstdcxx-amd64-linux-hardened]
+        profile: [gcc-amd64-linux-hardened, clang-libstdcxx-amd64-linux-hardened, clang-libcxx-amd64-linux-hardened]
         
     steps:
       - name: Checkout repository from github
