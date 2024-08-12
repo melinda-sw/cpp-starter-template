@@ -1,5 +1,0 @@
-include(../../conan/msvc-2022)
-
-[settings]
-build_type=Debug
-

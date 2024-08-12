@@ -1,4 +1,4 @@
-include(../../conan/clang-{{ os.getenv("CLANG_VER") }})
+include(../../conan/clang-{{ os.getenv("CLANG_VER") }}-amd64-linux)
 include(../../conan/opt/linux-address-sanitizer)
 include(../../conan/opt/linux-leak-sanitizer)
 include(../../conan/opt/linux-undefined-sanitizer)

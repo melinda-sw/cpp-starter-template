@@ -43,9 +43,7 @@ jobs:
         id: setup-conan
         uses: ./.github/actions/setup-conan
         with:
-          compiler: ${{ matrix.compiler }}
-          compiler-version: ${{ matrix.compiler == 'gcc' && env.GCC_VER || env.CLANG_VER }}
-          profile: linux-hardened
+          profile: ${{ matrix.compiler }}-amd64-linux-hardened
 
       - name: Configure CMake
         run: |
@@ -74,9 +72,7 @@ jobs:
         id: setup-conan
         uses: ./.github/actions/setup-conan
         with:
-          compiler: msvc
-          compiler-version: 2022
-          profile: msvc-hardened
+          profile: msvc-amd64-windows-hardened
 
       - name: Configure CMake
         run: |

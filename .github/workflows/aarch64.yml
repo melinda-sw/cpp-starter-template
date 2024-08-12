@@ -44,10 +44,7 @@ jobs:
         id: setup-conan
         uses: ./.github/actions/setup-conan
         with:
-           compiler: ${{ matrix.compiler }}
-           arch: 'aarch64'
-           compiler-version: ${{ matrix.compiler == 'gcc' && env.GCC_VER || env.CLANG_VER }}
-           profile: aarch64-linux-hardened             
+           profile: ${{ matrix.compiler }}-aarch64-linux-hardened             
 
       - name: Configure CMake
         run: |
