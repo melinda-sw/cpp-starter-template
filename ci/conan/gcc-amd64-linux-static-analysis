@@ -1,0 +1,5 @@
+include(../../conan/gcc-{{ os.getenv("GCC_VER") }}-amd64-linux)
+
+[settings]
+build_type=Debug
+

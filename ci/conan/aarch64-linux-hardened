@@ -1,6 +1,0 @@
-include(../../conan/aarch64-{{ os.getenv("COMPILER_NAME") }}-{{ os.getenv("COMPILER_VER") }})
-include(../../conan/opt/{{ os.getenv("COMPILER_NAME") }}-aarch64-linux-hardening)
-
-[settings]
-build_type=Release
-

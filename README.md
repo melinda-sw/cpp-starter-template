@@ -8,22 +8,22 @@ Necessary build tools are:
 * Conan 2.4 or higher
   * See [installation instructions](https://docs.conan.io/2/installation.html)
 * One of supported compilers:
-  * Clang-18
+  * Clang-18 (libstdc++ and libc++)
   * GCC-14
   * Visual Studio 2022 (MSVC v194)
 
 ### Cross compilation
 Supported architecture for cross compilation is Linux AArch64 with one of following compilers:
 * GCC-14
-* Clang-18
+* Clang-18 (libstdc++ and libc++)
 
 Note that the compilation flags assume ARM Cortex-A76. Which can be changed in corresponding Conan profiles.
 
 ### Install dependencies
 ```
-conan install . --profile=conan/clang-18 --build=missing --settings build_type=Release
+conan install . --profile=conan/clang-18-libstdcxx-amd64-linux --build=missing --settings build_type=Release
 ```
-* Conan profiles for supported compilers: `gcc-14`, `clang-18`, `msvc-2022`, `aarch64-gcc-14`, `aarch64-clang-18`
+* Predefined conan profiles for supported compilers are located in `conan` folder
 * Conan build types: `Release`, `Debug`
 
 ### Configure, build and test
@@ -58,24 +58,24 @@ dependencies with hardening enabled. Also enable CMAKE\_POSITION\_INDEPENDENT\_C
 variable during CMake configure. The hardening options should only be used
 with `Release` build type. This option is disabled by default.
 ```
-conan install . --profile=conan/clang-18 --profile=conan/opt/linux-hardening --build=* --settings build_type=Release
+conan install . --profile=conan/clang-18-libstdcxx-amd64-linux --profile=conan/opt/clang-amd64-linux-hardening --build=* --settings build_type=Release
 cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON --preset release
 ```
-For x86\_64 architecture toolchain hardening Conan profiles are:
-* `gcc-linux-hardening`
-* `clang-linux-hardening`
-* `msvc-hardening`
-
-For AArch64 architecture toolchain hardening Conan profiles are:
+Predefined toolchain hardening profiles are located in `conan/opt`:
+* `clang-amd64-linux-hardening`
+* `gcc-amd64-linux-hardening`
+* `msvc-amd64-windows-hardening`
 * `gcc-aarch64-linux-hardening`
 * `clang-aarch64-linux-hardening`
+
+Use the predefined hardening profile together with the matching compiler profile from `conan` folder.
 
 ### Sanitizers
 Enable sanitizers by adding an additional profile to the `conan install` command,
 together with `--build=*` to recompile dependencies with santizers enabled. Sanitizers
 should only be used with `Release` build type. These options are disabled by default.
 ```
-conan install . --profile=conan/clang-18 --profile=conan/opt/linux-address-sanitizer --build=* --settings build_type=Release
+conan install . --profile=conan/clang-18-libstdcxx-amd64-linux --profile=conan/opt/linux-address-sanitizer --build=* --settings build_type=Release
 ```
 * Conan profiles for `Clang` and `GCC` sanitizers are: `linux-address-sanitizer`, `linux-leak-sanitizer`, `linux-thread-sanitizer`, `linux-undefined-sanitizer`
   * Thread sanitizer cannot be used in combination with any other sanitizer

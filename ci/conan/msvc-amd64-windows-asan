@@ -1,0 +1,6 @@
+include(../../conan/msvc-2022-amd64-windows)
+include(../../conan/opt/msvc-amd64-windows-address-sanitizer)
+
+[settings]
+build_type=Release
+

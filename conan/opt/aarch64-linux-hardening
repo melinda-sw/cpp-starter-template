@@ -1,4 +1,4 @@
-include(common-linux-hardening)
+include(linux-hardening)
 
 [conf]
 tools.build:cflags+=["-mbranch-protection=standard"]

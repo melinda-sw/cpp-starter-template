@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        compiler: [gcc, clang]
+        profile: [gcc-aarch64-linux-hardened, clang-libstdcxx-aarch64-linux-hardened]
         
     steps:
       - name: Checkout repository from github
@@ -35,19 +35,17 @@ jobs:
           arch: 'aarch64'
 
       - name: Install clang-${{ env.CLANG_VER }}
-        if: matrix.compiler == 'clang'
+        if: contains(matrix.profile, 'clang')
         uses: ./.github/actions/install-clang 
         with:
           version: ${{ env.CLANG_VER }}
+          arch: 'aarch64'
 
       - name: Setup Conan
         id: setup-conan
         uses: ./.github/actions/setup-conan
         with:
-           compiler: ${{ matrix.compiler }}
-           arch: 'aarch64'
-           compiler-version: ${{ matrix.compiler == 'gcc' && env.GCC_VER || env.CLANG_VER }}
-           profile: aarch64-linux-hardened             
+           profile: ${{ matrix.profile }}
 
       - name: Configure CMake
         run: |

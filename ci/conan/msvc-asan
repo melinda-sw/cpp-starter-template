@@ -1,6 +1,0 @@
-include(../../conan/msvc-2022)
-include(../../conan/opt/msvc-address-sanitizer)
-
-[settings]
-build_type=Release
-
