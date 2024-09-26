@@ -11,11 +11,11 @@ class CSTConan(ConanFile):
     exports_sources = "cmake", "src", "CMakeLists.txt", "LICENSE"
 
     def requirements(self):
-        self.requires("fmt/11.0.0")
+        self.requires("fmt/11.0.2")
 
     def build_requirements(self):
         self.tool_requires("cmake/[^3.27]")
-        self.test_requires("catch2/[^3.6.0]")
+        self.test_requires("catch2/[^3.7.0]")
 
     def layout(self):
         cmake_layout(self)
