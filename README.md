@@ -5,26 +5,26 @@ Template set up with basic infrastructure for C++ projects
 ## Building
 Necessary build tools are:
 * CMake 3.27 or higher
-* Conan 2.4 or higher
+* Conan 2.8 or higher
   * See [installation instructions](https://docs.conan.io/2/installation.html)
 * One of supported compilers:
-  * Clang-18 (libstdc++ and libc++)
+  * Clang-19 (libstdc++ and libc++)
   * GCC-14
   * Visual Studio 2022 (MSVC v194)
 
 ### Cross compilation
 Supported architecture for cross compilation is Linux AArch64 with one of following compilers:
 * GCC-14
-* Clang-18 (libstdc++ and libc++)
+* Clang-19 (libstdc++ and libc++)
 
 Note that the compilation flags assume ARM Cortex-A76. Which can be changed in corresponding Conan profiles.
 
 ### Install dependencies
 ```
-conan install . --profile=conan/clang-18-libstdcxx-amd64-linux --build=missing --settings build_type=Release
+conan install . --profile=conan/clang-19-libstdcxx-amd64-linux --build=missing --settings build_type=Release
 ```
 * Predefined conan profiles for supported compilers are located in `conan` folder
-* Conan build types: `Release`, `Debug`
+* Conan build types: `Release`, `RelWithDebInfo`, `Debug`
 
 ### Configure, build and test
 ```
@@ -42,7 +42,7 @@ ctest --preset release
 
 Use the preset matching the build type used when installing dependencies.
 When compiling with `MSVC` or using some other multi configuration generator use
-`multi-debug` or `multi-release` presets.
+`multi-debug`, `multi-relwithdebinfo` or `multi-release` presets.
 
 ## Additional tools
 ### ClangFormat 
