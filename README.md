@@ -8,9 +8,10 @@ Necessary build tools are:
 * Conan 2.8 or higher
   * See [installation instructions](https://docs.conan.io/2/installation.html)
 * One of supported compilers:
-  * Clang-19 (libstdc++ and libc++)
+  * Clang-19 (libstdc++ or libc++)
   * GCC-14
   * Visual Studio 2022 (MSVC v194)
+* Ninja (if using Clang on Windows)
 
 ### Cross compilation
 Supported architecture for cross compilation is Linux AArch64 with one of following compilers:
@@ -29,7 +30,7 @@ conan install . --profile=conan/clang-19-libstdcxx-amd64-linux --build=missing -
 ### Configure, build and test
 ```
 cmake --preset release
-cmake --build --preset=release
+cmake --build --preset release
 ```
 Disable building of tests by:
 * Adding `--conf tools.build:skip_test=True` to `conan install` command
@@ -58,12 +59,13 @@ dependencies with hardening enabled. Also enable CMAKE\_POSITION\_INDEPENDENT\_C
 variable during CMake configure. The hardening options should only be used
 with `Release` build type. This option is disabled by default.
 ```
-conan install . --profile=conan/clang-18-libstdcxx-amd64-linux --profile=conan/opt/clang-amd64-linux-hardening --build=* --settings build_type=Release
+conan install . --profile=conan/clang-19-libstdcxx-amd64-linux --profile=conan/opt/clang-amd64-linux-hardening --build=* --settings build_type=Release
 cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON --preset release
 ```
 Predefined toolchain hardening profiles are located in `conan/opt`:
 * `clang-amd64-linux-hardening`
 * `gcc-amd64-linux-hardening`
+* `clang-amd64-windows-hardening`
 * `msvc-amd64-windows-hardening`
 * `gcc-aarch64-linux-hardening`
 * `clang-aarch64-linux-hardening`
