@@ -90,10 +90,6 @@ jobs:
       - name: Test
         run: |
           ctest --preset multi-release
-
-      - name: Install
-        run: |
-          cmake --install build --config Release
           
   windows-clang:
     runs-on: windows-2025
@@ -135,7 +131,3 @@ jobs:
       - name: Test
         run: |
           ctest --preset release
-
-      - name: Install
-        run: |
-          cmake --install build/Release
