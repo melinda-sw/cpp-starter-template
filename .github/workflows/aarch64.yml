@@ -52,5 +52,5 @@ jobs:
 
       - name: Build
         run: |
-          cmake --build --preset=release
+          cmake --build --preset release
 

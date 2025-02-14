@@ -51,14 +51,19 @@ jobs:
 
       - name: Build
         run: |
-          cmake --build --preset=release
+          cmake --build --preset release
       
       - name: Test
         run: |
           ctest --preset release
 
-  windows:
-    runs-on: windows-2022
+  windows-msvc:
+    runs-on: windows-2025
+
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [msvc-amd64-windows-hardened]
 
     steps:
       - name: Initialize
@@ -72,7 +77,7 @@ jobs:
         id: setup-conan
         uses: ./.github/actions/setup-conan
         with:
-          profile: msvc-amd64-windows-hardened
+          profile: ${{ matrix.profile }}
 
       - name: Configure CMake
         run: |
@@ -80,9 +85,57 @@ jobs:
           
       - name: Build
         run: |
-          cmake --build --preset=multi-release
+          cmake --build --preset multi-release
 
       - name: Test
         run: |
           ctest --preset multi-release
 
+      - name: Install
+        run: |
+          cmake --install build --config Release
+          
+  windows-clang:
+    runs-on: windows-2025
+    
+    env:
+      CLANG_VER: 19
+      
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [clang-amd64-windows-hardened]
+
+    steps:
+      - name: Initialize
+        run: |
+          git config --global core.autocrlf input
+          
+      - name: Checkout repository from github
+        uses: actions/checkout@v4
+
+      - name: Install Ninja
+        run: |
+          choco install ninja
+          
+      - name: Setup Conan
+        id: setup-conan
+        uses: ./.github/actions/setup-conan
+        with:
+          profile: ${{ matrix.profile }}
+
+      - name: Configure CMake
+        run: |
+          cmake -G=Ninja --preset release
+          
+      - name: Build
+        run: |
+          cmake --build --preset release
+
+      - name: Test
+        run: |
+          ctest --preset release
+
+      - name: Install
+        run: |
+          cmake --install build/Release

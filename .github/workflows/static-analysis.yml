@@ -42,7 +42,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake --build --preset=debug
+          cmake --build --preset debug
 
   iwyu:
     runs-on: ubuntu-24.04
@@ -78,7 +78,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake --build --preset=debug
+          cmake --build --preset debug
 
   gcc-analyzer:
     runs-on: ubuntu-24.04
@@ -105,7 +105,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake --build --preset=debug
+          cmake --build --preset debug
 
   cppcheck:
     runs-on: ubuntu-24.04
@@ -135,13 +135,10 @@ jobs:
 
       - name: Build
         run: |
-          cmake --build --preset=debug
+          cmake --build --preset debug
 
   msvc-analyze:
-    runs-on: windows-2022
-
-    env:
-      CONAN_PROFILE: msvc-2022
+    runs-on: windows-2025
 
     steps:
       - name: Initialize
@@ -163,5 +160,5 @@ jobs:
           
       - name: Build
         run: |
-          cmake --build --preset=multi-debug
+          cmake --build --preset multi-debug
 

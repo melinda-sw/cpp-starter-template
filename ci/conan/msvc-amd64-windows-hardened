@@ -3,4 +3,3 @@ include(../../conan/opt/msvc-amd64-windows-hardening)
 
 [settings]
 build_type=Release
-
