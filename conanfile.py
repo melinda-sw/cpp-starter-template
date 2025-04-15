@@ -8,10 +8,22 @@ class CSTConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     version = "0.1"
 
-    exports_sources = "cmake", "src", "CMakeLists.txt", "LICENSE"
+    options = {
+        "shared": [True, False],
+        "fPIC": [True, False],
+    }
+
+    default_options = {
+        "shared": False,
+        "fPIC": True,
+    }
+
+    exports_sources = "cmake/*", "src/*", "CMakeLists.txt", "LICENSE"
+
+    implements = ["auto_shared_fpic"]
 
     def requirements(self):
-        self.requires("fmt/11.1.3")
+        self.requires("fmt/11.1.4")
 
     def build_requirements(self):
         self.tool_requires("cmake/[^3.27]")
