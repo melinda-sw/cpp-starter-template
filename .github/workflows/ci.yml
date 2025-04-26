@@ -47,7 +47,7 @@ jobs:
 
       - name: Configure CMake
         run: |
-          cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON --preset release
+          cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON --preset release
 
       - name: Build
         run: |
@@ -81,7 +81,7 @@ jobs:
 
       - name: Configure CMake
         run: |
-          cmake --preset default
+          cmake -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON  --preset default
           
       - name: Build
         run: |
@@ -123,7 +123,7 @@ jobs:
 
       - name: Configure CMake
         run: |
-          cmake -G=Ninja --preset release
+          cmake -G=Ninja -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON --preset release
           
       - name: Build
         run: |
