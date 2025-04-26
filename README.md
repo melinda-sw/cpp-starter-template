@@ -16,7 +16,7 @@ Necessary build tools are:
 ### Cross compilation
 Supported architecture for cross compilation is Linux AArch64 with one of following compilers:
 * GCC-14
-* Clang-19 (libstdc++ or libc++)
+* Clang-20 (libstdc++ or libc++)
 
 Note that the compilation flags assume ARM Cortex-A76. Which can be changed in corresponding Conan profiles.
 
@@ -56,10 +56,10 @@ disabled by default.
 Enable toolchain security hardening compiler options, by adding an additional
 profile to the `conan install` command, together with `--build=*` to recompile
 dependencies with hardening enabled. Also enable CMAKE\_POSITION\_INDEPENDENT\_CODE
-variable during CMake configure. The hardening options should only be used
-with `Release` build type. This option is disabled by default.
+variable during CMake configure. Toolchain hardening options should only be used
+with `Release` or `RelWithDebInfo` build types. This option is disabled by default.
 ```
-conan install . --profile=conan/clang-20-libstdcxx-amd64-linux --profile=conan/opt/clang-amd64-linux-hardening --build=* --settings build_type=Release
+conan install . --profile=conan/clang-20-libstdcxx-amd64-linux --profile=conan/opt/clang-amd64-linux-hardening --profile=conan/opt/gnulike-libstdcxx-hardening --build=* --settings build_type=Release
 cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON --preset release
 ```
 Predefined toolchain hardening profiles are located in `conan/opt`:
@@ -70,18 +70,37 @@ Predefined toolchain hardening profiles are located in `conan/opt`:
 * `gcc-aarch64-linux-hardening`
 * `clang-aarch64-linux-hardening`
 
+When compiling with `Clang` or `GCC` on Linux also on select the standard library hardening profile:
+* `gnulike-libcxx-hardening`
+* `gnulike-libstdcxx-hardening`
+
 Use the predefined hardening profile together with the matching compiler profile from `conan` folder.
+
+### Link time optimization / Whole program optimization
+Enable link time optimization compiler options, by adding an additional
+profile to the `conan install` command, together with `--build=*` to recompile
+dependencies with link time optimization enabled. Also enable CMAKE\_INTERPROCEDURAL\_OPTIMIZATION
+variable during CMake configure. Link time optimization should only be used
+with `Release` or `RelWithDebInfo` build types. This option is disabled by default.
+```
+conan install . --profile=conan/clang-20-libstdcxx-amd64-linux --profile=conan/opt/gnulike-lto --build=* --settings build_type=Release
+cmake -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON --preset release
+```
+
+Predefined link time optimization profiles are located in `conan/opt`:
+* `gnulike-lto`
+* `msvc-amd64-windows-lto`
 
 ### Sanitizers
 Enable sanitizers by adding an additional profile to the `conan install` command,
 together with `--build=*` to recompile dependencies with santizers enabled. Sanitizers
-should only be used with `Release` build type. These options are disabled by default.
+should only be used with `Release`or `RelWithDebInfo` build types. These options are disabled by default.
 ```
-conan install . --profile=conan/clang-20-libstdcxx-amd64-linux --profile=conan/opt/linux-address-sanitizer --build=* --settings build_type=Release
+conan install . --profile=conan/clang-20-libstdcxx-amd64-linux --profile=conan/opt/gnulike-address-sanitizer --build=* --settings build_type=Release
 ```
-* Conan profiles for `Clang` and `GCC` sanitizers are: `linux-address-sanitizer`, `linux-leak-sanitizer`, `linux-thread-sanitizer`, `linux-undefined-sanitizer`
+* Conan profiles for `Clang` and `GCC` sanitizers are: `gnulike-address-sanitizer`, `gnulike-leak-sanitizer`, `gnulike-thread-sanitizer`, `gnulike-undefined-sanitizer`
   * Thread sanitizer cannot be used in combination with any other sanitizer
-* Conan profile for `MSVC` compiler is: `msvc-address-sanitizer`
+* Conan profile for `MSVC` compiler is: `msvc-amd64-windows-address-sanitizer`
   * Run the compiled executables from the developer command prompt, or execute `call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat" -arch=amd64 -host_arch=amd64` to correctly set up search paths for runtime libraries
 
 ### Static analysis
