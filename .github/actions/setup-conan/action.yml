@@ -11,7 +11,7 @@ inputs:
   cache:
     description: 'Use cache'
     required: false
-    default: 'true'
+    default: 'false'
 
 runs:
   using: 'composite'

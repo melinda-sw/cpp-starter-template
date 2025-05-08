@@ -1,15 +1,17 @@
 [settings]
 os=Windows
-arch=x86_64
 compiler=clang
 compiler.version=20
 compiler.cppstd=23
-compiler.runtime=dynamic
 compiler.runtime_version=v144
 
 [buildenv]
 CC=clang
 CXX=clang++
+CPP=clang-cpp
+AR=llvm-ar
+NM=llvm-nm
+RANLIB=llvm-ranlib
 
 [conf]
 tools.cmake.cmaketoolchain:generator=Ninja

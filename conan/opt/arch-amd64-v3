@@ -1,3 +1,0 @@
-[conf]
-tools.build:cflags+=["-march=x86-64-v3", "-mpclmul"]
-tools.build:cxxflags+=["-march=x86-64-v3", "-mpclmul"]
