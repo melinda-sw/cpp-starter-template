@@ -90,6 +90,7 @@ cmake -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON --preset release
 Predefined link time optimization profiles are located in `conan/opt`:
 * `gnulike-lto`
 * `msvc-amd64-windows-lto`
+* `clang-amd64-windows-lto`
 
 ### Sanitizers
 Enable sanitizers by adding an additional profile to the `conan install` command,
