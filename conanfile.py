@@ -27,7 +27,7 @@ class CSTConan(ConanFile):
 
     def build_requirements(self):
         self.tool_requires("cmake/[^3.27]")
-        self.test_requires("catch2/3.8.0")
+        self.test_requires("catch2/3.11.0")
 
     def layout(self):
         cmake_layout(self)
