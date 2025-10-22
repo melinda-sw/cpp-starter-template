@@ -17,7 +17,7 @@ jobs:
     
     env:
       GCC_VER: 14
-      CLANG_VER: 20
+      CLANG_VER: 21
       
     strategy:
       fail-fast: false

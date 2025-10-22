@@ -23,7 +23,7 @@ class CSTConan(ConanFile):
     implements = ["auto_shared_fpic"]
 
     def requirements(self):
-        self.requires("fmt/11.2.0")
+        self.requires("fmt/12.0.0")
 
     def build_requirements(self):
         self.tool_requires("cmake/[^3.27]")

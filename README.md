@@ -5,10 +5,10 @@ Template set up with basic infrastructure for C++ projects
 ## Building
 Necessary build tools are:
 * CMake 3.27 or higher
-* Conan 2.14 or higher
+* Conan 2.20 or higher
   * See [installation instructions](https://docs.conan.io/2/installation.html)
 * One of supported compilers:
-  * Clang-20 (libstdc++ or libc++)
+  * Clang-21 (libstdc++ or libc++)
   * GCC-14
   * Visual Studio 2022 (MSVC v194)
 * Ninja (if using Clang on Windows)
