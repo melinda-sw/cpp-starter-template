@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-24.04
     
     env:
-      GCC_VER: 14
-      CLANG_VER: 21
+      GCC_VER: 15
+      CLANG_VER: 22
 
     steps:
       - name: Checkout repository from github
@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-24.04
     
     env:
-      GCC_VER: 14
+      GCC_VER: 15
         
     steps:
       - name: Checkout repository from github

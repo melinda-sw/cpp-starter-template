@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-24.04
     
     env:
-      GCC_VER: 14
-      CLANG_VER: 21
+      GCC_VER: 15
+      CLANG_VER: 22
       
     strategy:
       fail-fast: false
@@ -95,7 +95,7 @@ jobs:
     runs-on: windows-2025
     
     env:
-      CLANG_VER: 21
+      CLANG_VER: 22
       
     strategy:
       fail-fast: false
@@ -113,7 +113,7 @@ jobs:
       - name: Install Ninja and Clang
         run: |
           choco install ninja
-          choco install llvm --version 21.1.0 -y
+          choco install llvm --version 22.1.0 -y
           
       - name: Setup Conan
         id: setup-conan

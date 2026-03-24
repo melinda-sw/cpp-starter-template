@@ -4,7 +4,7 @@ inputs:
   version:
     description: 'Version to install'
     required: false
-    default: '21'
+    default: '22'
 runs:
   using: 'composite'
   steps:
@@ -19,7 +19,7 @@ runs:
         shell: bash
         run: |
           cmake -S iwyu -B iwyu/build -DCMAKE_PREFIX_PATH=/usr/lib/llvm-${{ inputs.version }} -DCMAKE_BUILD_TYPE=Release -Wno-dev
-          cmake --build iwyu/build -j4
+          cmake --build iwyu/build --parallel
           sudo cmake --install iwyu/build
 
       - name: Cleanup
