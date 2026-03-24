@@ -29,6 +29,7 @@ runs:
       shell: ${{ inputs.shell }}
       run: |
         conan config install conan/global.conf
+        conan config install conan/settings_user.yml
 
     - name: Set environment variables
       if: ${{ runner.os == 'Linux' }}

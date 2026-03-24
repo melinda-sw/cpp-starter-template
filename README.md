@@ -5,24 +5,24 @@ Template set up with basic infrastructure for C++ projects
 ## Building
 Necessary build tools are:
 * CMake 3.27 or higher
-* Conan 2.20 or higher
+* Conan 2.26 or higher
   * See [installation instructions](https://docs.conan.io/2/installation.html)
 * One of supported compilers:
-  * Clang-21 (libstdc++ or libc++)
-  * GCC-14
+  * Clang-22 (libstdc++ or libc++)
+  * GCC-15
   * Visual Studio 2022 (MSVC v194)
 * Ninja (if using Clang on Windows)
 
 ### Cross compilation
 Supported architecture for cross compilation is Linux AArch64 with one of following compilers:
-* GCC-14
-* Clang-21 (libstdc++ or libc++)
+* GCC-15
+* Clang-22 (libstdc++ or libc++)
 
 Note that the compilation flags assume ARM Cortex-A76. Which can be changed in corresponding Conan profiles.
 
 ### Install dependencies
 ```
-conan install . --profile=conan/clang-21-libstdcxx-amd64-linux --build=missing --settings build_type=Release
+conan install . --profile=conan/clang-22-libstdcxx-amd64-linux --build=missing --settings build_type=Release
 ```
 * Predefined conan profiles for supported compilers are located in `conan` folder
 * Conan build types: `Release`, `RelWithDebInfo`, `Debug`
@@ -59,7 +59,7 @@ dependencies with hardening enabled. Also enable CMAKE\_POSITION\_INDEPENDENT\_C
 variable during CMake configure. Toolchain hardening options should only be used
 with `Release` or `RelWithDebInfo` build types. This option is disabled by default.
 ```
-conan install . --profile=conan/clang-21-libstdcxx-amd64-linux --profile=conan/opt/clang-amd64-linux-hardening --profile=conan/opt/gnulike-libstdcxx-hardening --build=* --settings build_type=Release
+conan install . --profile=conan/clang-22-libstdcxx-amd64-linux --profile=conan/opt/clang-amd64-linux-hardening --profile=conan/opt/gnulike-libstdcxx-hardening --build=* --settings build_type=Release
 cmake -DCMAKE_POSITION_INDEPENDENT_CODE=ON --preset release
 ```
 Predefined toolchain hardening profiles are located in `conan/opt`:
@@ -83,7 +83,7 @@ dependencies with link time optimization enabled. Also enable CMAKE\_INTERPROCED
 variable during CMake configure. Link time optimization should only be used
 with `Release` or `RelWithDebInfo` build types. This option is disabled by default.
 ```
-conan install . --profile=conan/clang-21-libstdcxx-amd64-linux --profile=conan/opt/gnulike-lto --build=* --settings build_type=Release
+conan install . --profile=conan/clang-22-libstdcxx-amd64-linux --profile=conan/opt/gnulike-lto --build=* --settings build_type=Release
 cmake -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON --preset release
 ```
 
@@ -97,12 +97,23 @@ Enable sanitizers by adding an additional profile to the `conan install` command
 together with `--build=*` to recompile dependencies with santizers enabled. Sanitizers
 should only be used with `Release`or `RelWithDebInfo` build types. These options are disabled by default.
 ```
-conan install . --profile=conan/clang-21-libstdcxx-amd64-linux --profile=conan/opt/gnulike-address-sanitizer --build=* --settings build_type=Release
+conan install . --profile=conan/clang-22-libstdcxx-amd64-linux --profile=conan/opt/gnulike-address-sanitizer --build=* --settings build_type=Release
 ```
 * Conan profiles for `Clang` and `GCC` sanitizers are: `gnulike-address-sanitizer`, `gnulike-leak-sanitizer`, `gnulike-thread-sanitizer`, `gnulike-undefined-sanitizer`
   * Thread sanitizer cannot be used in combination with any other sanitizer
 * Conan profile for `MSVC` compiler is: `msvc-amd64-windows-address-sanitizer`
   * Run the compiled executables from the developer command prompt, or execute `call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\VsDevCmd.bat" -arch=amd64 -host_arch=amd64` to correctly set up search paths for runtime libraries
+
+### Alternative linker
+Enable use of non-default linker by adding an additional profile to the `conan install` conmmand,
+together with `--build=*` to recompile dependencies with the alternative linker.
+```
+conan install . --profile=conan/clang-22-libstdcxx-amd64-linux --profile=conan/opt/gnulike-mold --build=* --settings build_type=Release
+```
+
+Predefined alternative linkers are located in `conan/opt`:
+* `gnulike-mold`
+* `gnulike-lld`
 
 ### Static analysis
 #### ClangTidy
