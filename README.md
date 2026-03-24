@@ -15,7 +15,7 @@ Necessary build tools are:
 
 ### Cross compilation
 Supported architecture for cross compilation is Linux AArch64 with one of following compilers:
-* GCC-15
+* GCC-14
 * Clang-22 (libstdc++ or libc++)
 
 Note that the compilation flags assume ARM Cortex-A76. Which can be changed in corresponding Conan profiles.
